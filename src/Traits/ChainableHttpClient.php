@@ -23,15 +23,24 @@ trait ChainableHttpClient
         return $clone;
     }
 
-    public function appendSignature(string $uri, array $options = []): array
+    /**
+     * @throws \EasyMeiTuan\Exceptions\InvalidArgumentException
+     */
+    public function appendSignature(string $uri, array $options): array
     {
-        $options = \array_merge($options, ['timestamp' => \time(), 'app_id' => $this->getAppId()]);
+        $bodyKeys = \array_values(\array_intersect(['body', 'query', 'json'], \array_keys($options)));
 
-        \ksort($options);
+        if (empty($bodyKeys)) {
+            throw new InvalidArgumentException();
+        }
 
-        $strOptions = \implode('&', \array_map(fn ($key, $value) => $key . '=' . $value, \array_keys($options), $options));
+        $bodyOptions = \array_merge($options[$bodyKey = $bodyKeys[0]], ['timestamp' => \time(), 'app_id' => $this->getAppId()]);
 
-        return \array_merge($options, ['sign' => \md5(\sprintf('%s?%s%s', $uri, $strOptions, $this->getSecretId()))]);
+        \ksort($bodyOptions);
+
+        $strBodyOptions = \implode('&', \array_map(fn ($key, $value) => $key . '=' . $value, \array_keys($bodyOptions), $bodyOptions));
+
+        return \array_merge($options, [$bodyKey => \array_merge($bodyOptions, ['sign' => \md5(\sprintf('%s?%s%s', $uri, $strBodyOptions, $this->getSecretId()))])]);
     }
 
     public function getUri(): string
@@ -71,9 +80,25 @@ trait ChainableHttpClient
             $uri = $this->getUri();
         }
 
+        $method = \strtoupper($method);
+
         [$uri, $options] = $this->replaceUriVariables($uri, $options);
 
-        return $this->request(\strtoupper($method), $uri, $options);
+        if (!\array_intersect(\array_keys($options), ['query', 'body', 'json'])) {
+            $extraOptions = \array_filter($options, fn ($option) => \is_array($option));
+
+            $options = \array_diff_key($options, $extraOptions);
+
+            $options = match (true) {
+                \in_array($method, ['GET', 'DELETE']) => ['query' => $options],
+                \in_array($method, ['POST', 'PATCH']) => ['body' => $options],
+                default => ['json' => $options],
+            };
+
+            $options = \array_merge($extraOptions, $options);
+        }
+
+        return $this->request($method, $uri, $this->appendSignature($uri, $options));
     }
 
     /**
