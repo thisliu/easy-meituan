@@ -1,7 +1,7 @@
 <h1 align="center"> finecho/meituan </h1>
 
 <p align="center"> 美团开放平台SDK.</p>
-> :star: 官方文档：https://developer.waimai.meituan.com/home/doc/food/1
+官方文档：https://developer.waimai.meituan.com/home/doc/food/1
 
 ## 安装
 
@@ -74,7 +74,7 @@ API Client 基于 [symfony/http-client](https://symfony.com/doc/current/http_cli
 
 ```php
 // 获取状态码
-$statusCode = $response->getStatusCode();````****~~~~~~~~****````
+$statusCode = $response->getStatusCode();
 
 // 获取全部响应头
 $headers = $response->getHeaders();
