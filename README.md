@@ -36,6 +36,9 @@ $response = $app->store->create(
         'body' => ['name' => 'finecho 的快餐店', 'address' => '深圳市南山区']
     ]
 );
+
+// 也可以直接这样
+$response = $app->store->create(['name' => 'finecho 的快餐店', 'address' => '深圳市南山区']);
 ```
 ### 方式二 - 原始方式调用
 ```php
