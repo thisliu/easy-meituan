@@ -85,16 +85,16 @@ trait ChainableHttpClient
             \preg_replace_callback(
                 '~\$(?<name>[a-z0-9_]+)~i',
                 callback: function ($matches) use (&$options) {
-                 if (empty($options[$matches['name']])) {
-                     throw new InvalidArgumentException(\sprintf('Missing url variables "%s".', $matches['name']));
-                 }
+                    if (empty($options[$matches['name']])) {
+                        throw new InvalidArgumentException(\sprintf('Missing url variables "%s".', $matches['name']));
+                    }
 
-                 $value = $options[$matches['name']];
+                    $value = $options[$matches['name']];
 
-                 unset($options[$matches['name']]);
+                    unset($options[$matches['name']]);
 
-                 return $value;
-             },
+                    return $value;
+                },
                 subject: $uri
             ),
             $options,
