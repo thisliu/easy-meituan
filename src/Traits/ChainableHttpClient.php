@@ -40,7 +40,7 @@ trait ChainableHttpClient
 
         $strBodyOptions = \implode('&', \array_map(fn ($key, $value) => $key . '=' . $value, \array_keys($bodyOptions), $bodyOptions));
 
-        return \array_merge($options, [$bodyKey => \array_merge($bodyOptions, ['sign' => \md5(\sprintf('%s?%s%s', $uri, $strBodyOptions, $this->getSecretId()))])]);
+        return \array_merge($options, [$bodyKey => \array_merge($bodyOptions, ['sig' => \md5(\sprintf('%s?%s%s', $uri, $strBodyOptions, $this->getSecretId()))])]);
     }
 
     public function getUri(): string

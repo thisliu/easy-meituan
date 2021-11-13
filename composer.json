@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": ">=8.0",
-        "symfony/http-client": "^5.3"
+        "symfony/http-client": "^5.3",
+        "illuminate/validation": "^8.70"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
@@ -21,7 +22,10 @@
     "autoload": {
         "psr-4": {
             "EasyMeiTuan\\": "src/"
-        }
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
     },
     "extra": {
         "hooks": {
@@ -43,7 +47,6 @@
             "cghooks add --ignore-lock",
             "cghooks update"
         ],
-        "phpstan": "vendor/bin/phpstan analyse",
         "check-style": "vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php_cs --dry-run --ansi",
         "fix-style": "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs --ansi",
         "test": "vendor/bin/phpunit --colors=always --testdox"

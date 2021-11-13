@@ -1,6 +1,8 @@
 <h1 align="center"> finecho/meituan </h1>
 
-<p align="center"> 美团开放平台SDK.</p>
+<p align="center"> :fire::fire:火热开发中:fire::fire:</p>
+
+<p align="center"> 美团开放平台SDK</p>
 官方文档：https://developer.waimai.meituan.com/home/doc/food/1
 
 ## 安装
@@ -33,12 +35,17 @@ $app = new Application($config);
 
 $response = $app->store->create(
     [
-        'body' => ['name' => 'finecho 的快餐店', 'address' => '深圳市南山区']
+        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
     ]
 );
 
-// 也可以直接这样
-$response = $app->store->create(['name' => 'finecho 的快餐店', 'address' => '深圳市南山区']);
+// 也可以这样
+$response = $app->store->create(
+    [
+        'body' => ['name' => 'finecho 的快餐店', 'address' => '深圳市南山区'],
+        'headers' => [],
+    ]
+);
 ```
 ### 方式二 - 原始方式调用
 ```php
@@ -51,7 +58,7 @@ $api = $app->getClient();
 $response = $api->post(
     '/poi/save',
     [
-        'body' => ['name' => 'finecho 的快餐店', 'address' => '深圳市南山区']
+        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
     ]
 );
 ```
@@ -66,7 +73,7 @@ $api = $app->getClient();
 
 $response = $api->poi->save->post(
     [
-        'body' => ['name' => 'finecho 的快餐店', 'address' => '深圳市南山区']
+        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
     ]
 );
 ```
