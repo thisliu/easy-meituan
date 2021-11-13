@@ -3,7 +3,7 @@
 namespace EasyMeiTuan\Traits;
 
 use EasyMeiTuan\Exceptions\InvalidArgumentException;
-use EasyMeiTuan\Support\Str;
+use Illuminate\Support\Str;
 
 trait ChainableHttpClient
 {
