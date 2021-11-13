@@ -14,6 +14,8 @@ class Application
     protected Config $config;
     protected Client $client;
 
+    public static bool $formVerify = false;
+
     /**
      * @throws \EasyMeiTuan\Exceptions\InvalidArgumentException
      */
@@ -24,7 +26,22 @@ class Application
         }
 
         $this->config = $config;
+
+        if ($config->get('form_verify', false)) {
+            $this->openVerify();
+        }
+
         $this->client = new Client($this->config);
+    }
+
+    public function openVerify()
+    {
+        self::$formVerify = true;
+    }
+
+    public function closeVerify()
+    {
+        self::$formVerify = false;
     }
 
     public function getConfig(): Config

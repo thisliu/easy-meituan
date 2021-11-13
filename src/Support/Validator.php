@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EasyMeiTuan\Support;
 
+use EasyMeiTuan\Application;
 use EasyMeiTuan\Exceptions\InvalidParamsException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\FileLoader;
@@ -32,6 +33,10 @@ class Validator extends Factory
         array $messages = [],
         array $customAttributes = []
     ): bool {
+        if (!Application::$formVerify) {
+            return true;
+        }
+
         $data = \array_merge($data, $data['json'] ?? [], $data['body'] ?? [], $data['query'] ?? []);
 
         $validator = self::getInstance()->make($data, $rules, $messages, $customAttributes);

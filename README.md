@@ -21,6 +21,9 @@ $config = [
     // 必填，app_id、secret_id
     'app_id' => 10020201024, 
     'secret_id' => 'AKIDsiQzQla780mQxLLU2GJCxxxxxxxxxxx', 
+    
+    // 是否开启表单验证
+    'form_verify' => false,
 ];
 ```
 
