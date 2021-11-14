@@ -78,9 +78,10 @@ class Client
     {
         $options = \array_merge(['timestamp' => \time(), 'app_id' => $this->getAppId()], $options);
 
-        if (isset($options['sig'])) {
-            unset($options['sig']);
-        }
+        unset($options['sig']);
+
+        // 此字段不参与签名计算
+        unset($options['img_data']);
 
         \ksort($options);
 

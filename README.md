@@ -82,15 +82,49 @@ $response = $api->poi->save->post(
 ```
 
 ## 美团推送
-在接受美团推送的时候，需要对签名进行校验
+在接收美团推送的时候，需要对签名进行校验
 ```php
-use EasyMeiTuan\Application;
-
-$app = new Application($config);
-
 $app->verifySignature(string: "当前路由地址", array: "推送过来的参数");
 ```
 
+## API
+### 门店
+文档地址：https://developer.waimai.meituan.com/home/docDetail/1
+
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Store.php
+```php
+$app->store->$method();
+```
+
+### 配送范围
+文档地址：https://developer.waimai.meituan.com/home/docDetail/40
+
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/DeliveryRange.php
+```php
+$app->deliveryRange->$method();
+```
+
+### 类目
+文档地址：https://developer.waimai.meituan.com/home/docDetail/52
+
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Category.php
+```php
+$app->category->$method();
+```
+
+### 菜品
+文档地址：https://developer.waimai.meituan.com/home/docDetail/54
+
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
+```php
+$app->product->$method();
+```
+
+### 全局公共
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
+```php
+$app->common->$method();
+```
 
 ### 返回值
 API Client 基于 [symfony/http-client](https://symfony.com/doc/current/http_client.html) 实现，你可以通过以下方式对响应值进行访问：

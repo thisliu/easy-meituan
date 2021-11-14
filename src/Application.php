@@ -7,7 +7,11 @@ namespace EasyMeiTuan;
 use EasyMeiTuan\Exceptions\ServiceNotFoundException;
 
 /**
- * @property \EasyMeiTuan\Services\Store store
+ * @property \EasyMeiTuan\Services\Store         $store
+ * @property \EasyMeiTuan\Services\Category      $category
+ * @property \EasyMeiTuan\Services\Common        $common
+ * @property \EasyMeiTuan\Services\DeliveryRange $deliveryRange
+ * @property \EasyMeiTuan\Services\Product       $product
  */
 class Application
 {
@@ -19,7 +23,7 @@ class Application
     /**
      * @throws \EasyMeiTuan\Exceptions\InvalidArgumentException
      */
-    public function __construct(array | Config $config)
+    public function __construct(array|Config $config)
     {
         if (\is_array($config)) {
             $config = new Config($config);

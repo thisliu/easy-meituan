@@ -113,7 +113,7 @@ class DeliveryRange extends Client
      *
      * @throws \EasyMeiTuan\Exceptions\InvalidParamsException
      */
-    public function delete(array $params): ResponseInterface
+    public function destroy(array $params): ResponseInterface
     {
         Validator::verify($params, [
             'app_poi_code' => 'required|string|max:128',
