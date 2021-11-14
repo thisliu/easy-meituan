@@ -88,7 +88,7 @@ $app->verifySignature(string: "当前路由地址", array: "推送过来的参�
 ```
 
 ## API
-### 门店
+### :globe_with_meridians: 门店
 文档地址：https://developer.waimai.meituan.com/home/docDetail/1
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Store.php
@@ -96,7 +96,7 @@ $app->verifySignature(string: "当前路由地址", array: "推送过来的参�
 $app->store->$method();
 ```
 
-### 配送范围
+### :truck: 配送范围
 文档地址：https://developer.waimai.meituan.com/home/docDetail/40
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/DeliveryRange.php
@@ -104,7 +104,7 @@ $app->store->$method();
 $app->deliveryRange->$method();
 ```
 
-### 类目
+### :memo: 类目
 文档地址：https://developer.waimai.meituan.com/home/docDetail/52
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Category.php
@@ -112,7 +112,7 @@ $app->deliveryRange->$method();
 $app->category->$method();
 ```
 
-### 菜品
+### :beers: 菜品
 文档地址：https://developer.waimai.meituan.com/home/docDetail/54
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
@@ -120,7 +120,7 @@ $app->category->$method();
 $app->product->$method();
 ```
 
-### 全局公共
+### :wrench: 全局公共
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
 ```php
 $app->common->$method();
