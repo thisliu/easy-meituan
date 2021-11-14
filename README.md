@@ -81,6 +81,9 @@ $response = $api->poi->save->post(
 );
 ```
 
+## 表单校验
+如果开启表单校验，如果参数缺失或者异常，则会抛出 [InvalidParamsException](https://github.com/finecho/easy-meituan/blob/main/src/Exceptions/InvalidParamsException.php) 异常
+
 ## 美团推送
 在接收美团推送的时候，需要对签名进行校验
 ```php
@@ -88,8 +91,10 @@ $app->verifySignature(string: "当前路由地址", array: "推送过来的参�
 ```
 
 ## API
+API 接口众多，每一个 API 都会注释上美团文档地址，查询困难时，可以直接搜索匹配。
+
 ### :globe_with_meridians: 门店
-文档地址：https://developer.waimai.meituan.com/home/docDetail/1
+文档地址：https://developer.waimai.meituan.com/home/doc/food/1
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Store.php
 ```php
@@ -97,7 +102,7 @@ $app->store->$method();
 ```
 
 ### :truck: 配送范围
-文档地址：https://developer.waimai.meituan.com/home/docDetail/40
+文档地址：https://developer.waimai.meituan.com/home/doc/food/2
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/DeliveryRange.php
 ```php
@@ -105,7 +110,7 @@ $app->deliveryRange->$method();
 ```
 
 ### :memo: 类目
-文档地址：https://developer.waimai.meituan.com/home/docDetail/52
+文档地址：https://developer.waimai.meituan.com/home/doc/food/3
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Category.php
 ```php
@@ -113,12 +118,36 @@ $app->category->$method();
 ```
 
 ### :beers: 菜品
-文档地址：https://developer.waimai.meituan.com/home/docDetail/54
+文档地址：https://developer.waimai.meituan.com/home/doc/food/3
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
 ```php
 $app->product->$method();
 ```
+
+### :page_facing_up: 订单
+文档地址：https://developer.waimai.meituan.com/home/doc/food/6
+
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Order.php
+```php
+$app->order->$method();
+```
+#### :wastebasket: 订单退款
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Refund.php
+```php
+$app->refund->$method();
+```
+#### :truck: 订单配送
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Logistic.php
+```php
+$app->logistic->$method();
+```
+#### :package: 众包
+具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/CrowdSourcing.php
+```php
+$app->crowdSourcing->$method();
+```
+
 
 ### :wrench: 全局公共
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
