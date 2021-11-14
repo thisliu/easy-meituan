@@ -12,6 +12,9 @@ use EasyMeiTuan\Exceptions\ServiceNotFoundException;
  * @property \EasyMeiTuan\Services\Common        $common
  * @property \EasyMeiTuan\Services\DeliveryRange $deliveryRange
  * @property \EasyMeiTuan\Services\Product       $product
+ * @property \EasyMeiTuan\Services\Order         $order
+ * @property \EasyMeiTuan\Services\Logistic      $logistic
+ * @property \EasyMeiTuan\Services\CrowdSourcing $crowdSourcing
  */
 class Application
 {
