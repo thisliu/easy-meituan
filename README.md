@@ -1,6 +1,6 @@
 <h1 align="center"> finecho/meituan </h1>
 
-<p align="center"> :fire::fire:火热开发中:fire::fire:</p>
+<p align="center"> :fire::fire:  火热开发中  :fire::fire:</p>
 
 <p align="center"> 美团开放平台SDK</p>
 官方文档：https://developer.waimai.meituan.com/home/doc/food/1
