@@ -22,10 +22,7 @@
     "autoload": {
         "psr-4": {
             "EasyMeiTuan\\": "src/"
-        },
-        "files": [
-            "src/Helpers.php"
-        ]
+        }
     },
     "extra": {
         "hooks": {
