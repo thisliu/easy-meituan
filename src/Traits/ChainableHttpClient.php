@@ -23,26 +23,6 @@ trait ChainableHttpClient
         return $clone;
     }
 
-    /**
-     * @throws \EasyMeiTuan\Exceptions\InvalidArgumentException
-     */
-    public function appendSignature(string $uri, array $options): array
-    {
-        $bodyKeys = \array_values(\array_intersect(['body', 'query', 'json'], \array_keys($options)));
-
-        if (empty($bodyKeys)) {
-            throw new InvalidArgumentException();
-        }
-
-        $bodyOptions = \array_merge($options[$bodyKey = $bodyKeys[0]], ['timestamp' => \time(), 'app_id' => $this->getAppId()]);
-
-        \ksort($bodyOptions);
-
-        $strBodyOptions = \implode('&', \array_map(fn ($key, $value) => $key . '=' . $value, \array_keys($bodyOptions), $bodyOptions));
-
-        return \array_merge($options, [$bodyKey => \array_merge($bodyOptions, ['sig' => \md5(\sprintf('%s?%s%s', $uri, $strBodyOptions, $this->getSecretId()))])]);
-    }
-
     public function getUri(): string
     {
         return $this->uri;
@@ -98,7 +78,7 @@ trait ChainableHttpClient
             $options = \array_merge($extraOptions, $options);
         }
 
-        return $this->request($method, $uri, $this->appendSignature($uri, $options));
+        return $this->request($method, $uri, $options);
     }
 
     /**

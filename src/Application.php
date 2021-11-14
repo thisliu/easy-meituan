@@ -68,6 +68,11 @@ class Application
         return $this;
     }
 
+    public function verifySignature(string $uri, array $params = []): bool
+    {
+        return $this->getClient()->createSignature($uri, $params) === ($params['sig'] ?? null);
+    }
+
     /**
      * @throws \EasyMeiTuan\Exceptions\ServiceNotFoundException
      */
