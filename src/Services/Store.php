@@ -11,6 +11,15 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class Store extends Client
 {
+    public const DELIVERABLE_BUSINESS_STATUS = 1;
+    public const RESTING_BUSINESS_STATUS = 3;
+
+    // 营业状态
+    public const BUSINESS_STATUS_LABELS = [
+        self::DELIVERABLE_BUSINESS_STATUS => '可配送',
+        self::RESTING_BUSINESS_STATUS => '休息中',
+    ];
+
     /**
      * 获取门店ID
      * https://developer.waimai.meituan.com/home/docDetail/4
@@ -54,8 +63,11 @@ class Store extends Client
             'shipping_fee' => 'required|numeric',
             'shipping_time' => 'required|string',
             'promotion_info' => 'required|string',
-            'open_level' => 'required|integer',
-            'is_online' => 'required|integer',
+            'open_level' => [
+                'required',
+                Rule::in(\array_keys(self::BUSINESS_STATUS_LABELS))
+            ],
+            'is_online' => 'required|in:0,1',
             'invoice_support' => 'integer',
             'invoice_min_price' => 'integer',
             'invoice_description' => 'string',
