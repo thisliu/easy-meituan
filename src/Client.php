@@ -69,7 +69,7 @@ class Client
             throw new InvalidArgumentException();
         }
 
-        $bodyOptions = $options[$bodyKey = $bodyKeys[0]];
+        $bodyOptions = \array_merge($options[$bodyKey = $bodyKeys[0]], ['timestamp' => \time(), 'app_id' => $this->getAppId()]);
 
         return \array_merge($options, [$bodyKey => \array_merge($bodyOptions, ['sig' => $this->createSignature($uri, $bodyOptions)])]);
     }

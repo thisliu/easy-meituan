@@ -20,17 +20,13 @@ class Store extends Client
      *
      * @throws \EasyMeiTuan\Exceptions\InvalidParamsException
      */
-    public function list(array $params): ResponseInterface
+    public function list(array $params = []): ResponseInterface
     {
         Validator::verify($params, [
             'only_id' => 'boolean',
-            'data' => [
-                'array',
-                Rule::requiredIf($onlyId = (\data_get($params, 'only_id', false))),
-            ],
             'app_poi_codes' => [
                 'array',
-                Rule::requiredIf(!$onlyId),
+                Rule::requiredIf(!$onlyId = (\data_get($params, 'only_id', true))),
             ],
         ]);
 
