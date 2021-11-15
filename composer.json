@@ -11,7 +11,7 @@
     "require": {
         "php": ">=8.0",
         "symfony/http-client": "^5.3",
-        "illuminate/validation": "^8.70"
+        "illuminate/validation": "8.*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
