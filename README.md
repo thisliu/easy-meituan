@@ -5,6 +5,9 @@
 <p align="center"> 美团开放平台SDK</p>
 官方文档：https://developer.waimai.meituan.com/home/doc/food/1
 
+## 警告
+⚠️  SDK 还在开发阶段，大部分 API 未经过真实测试，慎重使用哦
+
 ## 安装
 
 环境要求：
