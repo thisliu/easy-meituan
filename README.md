@@ -12,7 +12,7 @@
 - PHP >= 8.0
 
 ```shell
-$ composer require finecho/meituan -vvv
+$ composer require finecho/meituan:dev-main -vvv
 ```
 
 ## 配置
@@ -161,27 +161,66 @@ API Client 基于 [symfony/http-client](https://symfony.com/doc/current/http_cli
 ```php
 // 获取状态码
 $statusCode = $response->getStatusCode();
-
 // 获取全部响应头
 $headers = $response->getHeaders();
-
 // 获取响应原始内容
 $content = $response->getContent();
-
 // 获取 json 转换后的数组格式
 $content = $response->toArray();
-
 // 将内容转换成 Stream 返回
 $content = $response->toStream();
-
 // 获取其他信息，如："response_headers", "redirect_count", "start_time", "redirect_url" 等.
 $httpInfo = $response->getInfo();
-
 // 获取指定信息
 $startTime = $response->getInfo('start_time');
-
 // 获取请求日志
 $httpLogs = $response->getInfo('debug');                                             
+```
+
+在原有 Response 的基础上，增加了以下几种方法：
+```php
+// 请求是否正常
+$isSuccess = $response->isSuccess(): bool;
+// 请求是否出现异常
+$isError = $response->isError(): bool;
+// 获取错误信息
+$error = $response->getError(): array;
+// 获取正常返回的数据
+$data = $response->getData(): array;
+
+```
+
+## 一个比较完整的示例
+```php
+require __DIR__ .'/vendor/autoload.php';
+
+use EasyMeiTuan\Application;
+use EasyMeiTuan\Exceptions\InvalidParamsException;
+
+$config = [
+    'app_id' => 'xxx',
+    'secret_id' => 'xxxxxxxxxxx',
+    'form_verify' => true,
+];
+
+$app = new Application($config);
+
+try {
+    $response = $app->store->list();
+
+    if ($response->isError()) {
+        $error = $response->getError();
+
+        // .....
+    }
+
+    $data = $response->getData();
+
+    // ....
+
+} catch (InvalidParamsException $e) {
+    // 捕获到表单异常
+}
 ```
 
 ## License

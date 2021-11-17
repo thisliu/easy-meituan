@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace EasyMeiTuan\Services;
 
 use EasyMeiTuan\Client;
+use EasyMeiTuan\Interfaces\ResponseInterface;
 use EasyMeiTuan\Support\Validator;
 use Illuminate\Validation\Rule;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class Store extends Client
 {
@@ -35,7 +35,7 @@ class Store extends Client
             'only_id' => 'boolean',
             'app_poi_codes' => [
                 'array',
-                Rule::requiredIf(!$onlyId = (\data_get($params, 'only_id', true))),
+                Rule::requiredIf(!$onlyId = (\data_get($params, 'only_id', false))),
             ],
         ]);
 
