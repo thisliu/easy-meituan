@@ -11,5 +11,5 @@ interface ResponseInterface extends \Symfony\Contracts\HttpClient\ResponseInterf
     public function getError(): ?array;
     public function getErrorMsg(): ?string;
     public function getErrorCode(): string|int|null;
-    public function getData(): ?array;
+    public function getData(): mixed;
 }

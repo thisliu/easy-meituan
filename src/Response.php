@@ -111,8 +111,8 @@ class Response implements ResponseInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      */
-    public function getData(): array
+    public function getData(): mixed
     {
-        return $this->toArray()['data'] ?? [];
+        return $this->toArray()['data'] ?? null;
     }
 }

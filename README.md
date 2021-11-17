@@ -193,7 +193,7 @@ $error = $response->getErrorMsg(): ?string;
 // 获取错误码
 $error = $response->getErrorCode(): string|int|null;
 // 获取正常返回的数据
-$data = $response->getData(): array;
+$data = $response->getData(): mixed;
 
 ```
 
