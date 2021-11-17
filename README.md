@@ -189,7 +189,9 @@ $isError = $response->isError(): bool;
 // 获取错误内容（code + msg）
 $error = $response->getError(): array;
 // 获取错误信息
-$error = $response->getErrorMsg(): string;
+$error = $response->getErrorMsg(): ?string;
+// 获取错误码
+$error = $response->getErrorcode(): string|int|null;
 // 获取正常返回的数据
 $data = $response->getData(): array;
 
