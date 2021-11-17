@@ -186,8 +186,10 @@ $httpLogs = $response->getInfo('debug');
 $isSuccess = $response->isSuccess(): bool;
 // 请求是否出现异常
 $isError = $response->isError(): bool;
-// 获取错误信息
+// 获取错误内容（code + msg）
 $error = $response->getError(): array;
+// 获取错误信息
+$error = $response->getErrorMsg(): string;
 // 获取正常返回的数据
 $data = $response->getData(): array;
 

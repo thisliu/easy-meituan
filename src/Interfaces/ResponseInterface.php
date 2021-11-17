@@ -9,5 +9,7 @@ interface ResponseInterface extends \Symfony\Contracts\HttpClient\ResponseInterf
     public function isSuccess(): bool;
     public function isError(): bool;
     public function getError(): ?array;
+    public function getErrorMsg(): ?string;
+    public function getErrorCode(): string|int|null;
     public function getData(): ?array;
 }
