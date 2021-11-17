@@ -2,32 +2,24 @@
 
 namespace EasyMeiTuan\Models;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
+use EasyMeiTuan\Traits\HasAttributes;
 
-class Model
+class Model implements \ArrayAccess, \JsonSerializable, \Serializable
 {
-    public function __construct(
-        public array $attributes = []
-    ) {
+    use HasAttributes;
+
+    public function serialize(): string
+    {
+        return serialize($this->attributes);
     }
 
-    public function __get(string $name)
+    public function unserialize($serialized)
     {
-        if (\method_exists($this, $method = \sprintf('get%sAttribute', Str::ucfirst(Str::camel(\strtolower($name)))))) {
-            return $this->$method();
-        }
-
-        return $this->getOriginal($name);
+        $this->attributes = unserialize($serialized) ?: [];
     }
 
-    public function __set(string $name, $value): void
+    public function jsonSerialize(): array
     {
-        $this->attributes[$name] = $value;
-    }
-
-    public function getOriginal(string $name)
-    {
-        return Arr::get($this->attributes, $name);
+        return $this->attributes;
     }
 }
