@@ -11,7 +11,11 @@
     "require": {
         "php": ">=8.0",
         "symfony/http-client": "^5.3",
-        "illuminate/validation": "8.*"
+        "illuminate/validation": "8.*",
+        "nyholm/psr7": "^1.4",
+        "nyholm/psr7-server": "^1.0",
+        "symfony/psr-http-message-bridge": "^2.1",
+        "illuminate/support": "^8.73"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",

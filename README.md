@@ -6,7 +6,8 @@
 官方文档：https://developer.waimai.meituan.com/home/doc/food/1
 
 ## 警告
-⚠️  SDK 还在开发阶段，大部分 API 未经过真实测试，慎重使用哦
+
+⚠️ SDK 还在开发阶段，大部分 API 未经过真实测试，慎重使用哦
 
 ## 安装
 
@@ -19,6 +20,7 @@ $ composer require finecho/meituan:dev-main -vvv
 ```
 
 ## 配置
+
 ```php
 $config = [
     // 必填，app_id、secret_id
@@ -31,9 +33,11 @@ $config = [
 ```
 
 ## 使用
+
 您可以使用三种调用方式：封装方式调用、原始方式调用 和 链式调用，请根据你的喜好自行选择使用方式，效果一致。
 
 ### 方式一 - 封装方式调用
+
 ```php
 use EasyMeiTuan\Application;
 
@@ -53,7 +57,9 @@ $response = $app->store->create(
     ]
 );
 ```
+
 ### 方式二 - 原始方式调用
+
 ```php
 use EasyMeiTuan\Application;
 
@@ -68,8 +74,11 @@ $response = $api->post(
     ]
 );
 ```
+
 ### 方式三 - 链式调用
+
 你可以将需要调用的 API 以 / 分割 + 驼峰写法的形式，写成如下模式：
+
 ```php
 use EasyMeiTuan\Application;
 
@@ -85,80 +94,137 @@ $response = $api->poi->save->post(
 ```
 
 ## 表单校验
+
 如果开启表单校验，如果参数缺失或者异常，则会抛出 [InvalidParamsException](https://github.com/finecho/easy-meituan/blob/main/src/Exceptions/InvalidParamsException.php) 异常
 
 ## 美团推送
+
 在接收美团推送的时候，需要对签名进行校验
+
 ```php
-$app->verifySignature(string: "当前路由地址", array: "推送过来的参数");
+$serve = $app->getServer();
+
+$url = '在美团设置的推送地址';
+
+$server->withUrl($url)
+        ->with(function ($content) {
+            // $content 就是推送的内容
+        });
+
+// 记得 server()
+return $server->server();
+
+// 因为美团那帮[大笨蛋]由于历史原因, 推送的内容中各种 url encode 和 json encode 的内容乱塞, SDK 提供属性可自行配置 decode 规则. url 为对值进行 url decode, json 为对值进行 json_decode(val, true)
+// 签名校验的时候, 需要将已编码的根字段内容进行 url decode
+
+\EasyMeiTuan\Server::$decodeRules = [
+        'caution' => 'url',
+        'detail' => 'url|json',
+        'extras' => 'url|json',
+        'recipient_name' => 'url',
+        'wm_poi_address' => 'url',
+        'recipient_address' => 'url',
+        'incmp_modules' => 'url|json',
+        'order_tag_list' => 'url|json',
+        'backup_recipient_phone' => 'url|json',
+        'recipient_address_desensitization' => 'url',
+
+        // FBI Warning: nested content needs to pay attention to the order!
+        'poi_receive_detail_yuan' => 'url|json',
+        'poi_receive_detail_yuan.reconciliationExtras' => 'json',
+        'poi_receive_detail' => 'url|json',
+        'poi_receive_detail.reconciliationExtras' => 'json',
+    ];
 ```
 
 ## API
+
 API 接口众多，每一个 API 都会注释上美团文档地址，查询困难时，可以直接搜索匹配。
 
 ### :globe_with_meridians: 门店
+
 文档地址：https://developer.waimai.meituan.com/home/doc/food/1
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Store.php
+
 ```php
 $app->store->$method();
 ```
 
 ### :truck: 配送范围
+
 文档地址：https://developer.waimai.meituan.com/home/doc/food/2
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/DeliveryRange.php
+
 ```php
 $app->deliveryRange->$method();
 ```
 
 ### :memo: 类目
+
 文档地址：https://developer.waimai.meituan.com/home/doc/food/3
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Category.php
+
 ```php
 $app->category->$method();
 ```
 
 ### :beers: 菜品
+
 文档地址：https://developer.waimai.meituan.com/home/doc/food/3
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
+
 ```php
 $app->product->$method();
 ```
 
 ### :page_facing_up: 订单
+
 文档地址：https://developer.waimai.meituan.com/home/doc/food/6
 
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Order.php
+
 ```php
 $app->order->$method();
 ```
+
 #### :wastebasket: 订单退款
+
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Refund.php
+
 ```php
 $app->refund->$method();
 ```
+
 #### :truck: 订单配送
+
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Logistic.php
+
 ```php
 $app->logistic->$method();
 ```
+
 #### :package: 众包
+
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/CrowdSourcing.php
+
 ```php
 $app->crowdSourcing->$method();
 ```
 
-
 ### :wrench: 全局公共
+
 具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
+
 ```php
 $app->common->$method();
 ```
 
 ### 返回值
+
 API Client 基于 [symfony/http-client](https://symfony.com/doc/current/http_client.html) 实现，你可以通过以下方式对响应值进行访问：
 
 ```php
@@ -181,6 +247,7 @@ $httpLogs = $response->getInfo('debug');
 ```
 
 在原有 Response 的基础上，增加了以下几种方法：
+
 ```php
 // 请求是否正常
 $isSuccess = $response->isSuccess(): bool;
@@ -198,6 +265,7 @@ $data = $response->getData(): mixed;
 ```
 
 ## 一个比较完整的示例
+
 ```php
 require __DIR__ .'/vendor/autoload.php';
 

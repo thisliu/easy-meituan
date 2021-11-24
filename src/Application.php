@@ -20,6 +20,7 @@ class Application
 {
     protected Config $config;
     protected Client $client;
+    protected ?Server $server = null;
 
     public static bool $formVerify = false;
 
@@ -75,9 +76,14 @@ class Application
         return $this;
     }
 
-    public function verifySignature(string $uri, array $params = []): bool
+    /**
+     * @throws \EasyMeiTuan\Exceptions\InvalidArgumentException
+     */
+    public function getServer(): Server
     {
-        return $this->getClient()->createSignature($uri, $params) === ($params['sig'] ?? null);
+        !$this->server && ($this->server = new Server($this->getConfig()));
+
+        return $this->server;
     }
 
     /**
