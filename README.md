@@ -120,7 +120,7 @@ return $server->serve();
 - json：为对值进行 `json_decode(val, true)`
 ```php
 // 默认需要解码字段以及规则
-\EasyMeiTuan\Server::$decodeRules = [
+\EasyMeiTuan\Server::$casts = [
     'caution' => 'url',
     'detail' => 'url|json',
     'extras' => 'url|json',

@@ -51,8 +51,9 @@ class Server
 
     /**
      * @throws \EasyMeiTuan\Exceptions\InvalidParamsException
+     * @throws \EasyMeiTuan\Exceptions\InvalidArgumentException
      */
-    public function server(): mixed
+    public function serve(): mixed
     {
         $content = $this->createContentFromRequest();
 
@@ -65,6 +66,7 @@ class Server
 
     /**
      * @throws \EasyMeiTuan\Exceptions\InvalidParamsException
+     * @throws \EasyMeiTuan\Exceptions\InvalidArgumentException
      */
     protected function createContentFromRequest(): array
     {

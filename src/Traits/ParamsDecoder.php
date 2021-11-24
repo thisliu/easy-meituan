@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 trait ParamsDecoder
 {
-    public static array $decodeRules = [
+    public static array $casts = [
         'caution' => 'url',
         'detail' => 'url|json',
         'extras' => 'url|json',
@@ -29,7 +29,7 @@ trait ParamsDecoder
     public function formatContentToValidator(array $content): array
     {
         foreach ($content as $key => $value) {
-            $rule = static::$decodeRules[$key] ?? false;
+            $rule = static::$casts[$key] ?? false;
 
             if ($rule && Str::startsWith($rule, 'url')) {
                 $content[$key] = urldecode($value);
@@ -41,7 +41,7 @@ trait ParamsDecoder
 
     public function formatContentToApp(array $content): array
     {
-        foreach (static::$decodeRules as $key => $rule) {
+        foreach (static::$casts as $key => $rule) {
             $value = Arr::get($content, $key);
 
             if (is_string($value)) {
