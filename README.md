@@ -99,7 +99,7 @@ $response = $api->poi->save->post(
 
 ## 美团推送
 
-在接收美团推送的时候，需要对签名进行校验
+在接收美团推送的时候，`Server` 会对签名进行校验，并返回解码后的内容
 
 ```php
 $server = $app->getServer();
