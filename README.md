@@ -102,39 +102,42 @@ $response = $api->poi->save->post(
 在接收美团推送的时候，需要对签名进行校验
 
 ```php
-$serve = $app->getServer();
+$server = $app->getServer();
 
-$url = '在美团设置的推送地址';
+// url：在美团设置的推送地址
+// content：美团推送过来的内容
+$server->withUrl($url)->with(
+    function ($content) {
+        // ....
+    }
+);
 
-$server->withUrl($url)
-        ->with(function ($content) {
-            // $content 就是推送的内容
-        });
+return $server->serve();
+```
 
-// 记得 server()
-return $server->server();
-
-// 因为美团那帮[大笨蛋]由于历史原因, 推送的内容中各种 url encode 和 json encode 的内容乱塞, SDK 提供属性可自行配置 decode 规则. url 为对值进行 url decode, json 为对值进行 json_decode(val, true)
-// 签名校验的时候, 需要将已编码的根字段内容进行 url decode
-
+签名校验的时候, 需要将已编码的字段内容进行解码，SDK 提供属性可自行配置 decode 规则。
+- url：对值进行 `urldecode`
+- json：为对值进行 `json_decode(val, true)`
+```php
+// 默认需要解码字段以及规则
 \EasyMeiTuan\Server::$decodeRules = [
-        'caution' => 'url',
-        'detail' => 'url|json',
-        'extras' => 'url|json',
-        'recipient_name' => 'url',
-        'wm_poi_address' => 'url',
-        'recipient_address' => 'url',
-        'incmp_modules' => 'url|json',
-        'order_tag_list' => 'url|json',
-        'backup_recipient_phone' => 'url|json',
-        'recipient_address_desensitization' => 'url',
+    'caution' => 'url',
+    'detail' => 'url|json',
+    'extras' => 'url|json',
+    'recipient_name' => 'url',
+    'wm_poi_address' => 'url',
+    'recipient_address' => 'url',
+    'incmp_modules' => 'url|json',
+    'order_tag_list' => 'url|json',
+    'backup_recipient_phone' => 'url|json',
+    'recipient_address_desensitization' => 'url',
 
-        // FBI Warning: nested content needs to pay attention to the order!
-        'poi_receive_detail_yuan' => 'url|json',
-        'poi_receive_detail_yuan.reconciliationExtras' => 'json',
-        'poi_receive_detail' => 'url|json',
-        'poi_receive_detail.reconciliationExtras' => 'json',
-    ];
+    // FBI Warning: nested content needs to pay attention to the order!
+    'poi_receive_detail_yuan' => 'url|json',
+    'poi_receive_detail_yuan.reconciliationExtras' => 'json',
+    'poi_receive_detail' => 'url|json',
+    'poi_receive_detail.reconciliationExtras' => 'json',
+];
 ```
 
 ## API
