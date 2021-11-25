@@ -2,7 +2,7 @@
 
 <p align="center"> :fire::fire:  火热开发中  :fire::fire:</p>
 
-<p align="center"> 美团开放平台SDK</p>
+<p align="center"> 美团开放平台（外卖）SDK</p>
 官方文档：https://developer.waimai.meituan.com/home/doc/food/1
 
 ## 警告
