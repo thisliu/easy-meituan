@@ -55,10 +55,16 @@ class Server
      */
     public function serve(): mixed
     {
+        $response = new ServerResponse(200, [], json_encode(['data' => 'ok'], JSON_UNESCAPED_UNICODE));
+
+        if ($this->getRequest()->getMethod() === 'GET') {
+            return $response;
+        }
+
         $content = $this->createContentFromRequest();
 
         try {
-            return $this->handle(new ServerResponse(200, [], json_encode(['data' => 'ok'], JSON_UNESCAPED_UNICODE)), $content);
+            return $this->handle($response, $content);
         } catch (\Exception $e) {
             return new ServerResponse(500, [], json_encode(['data' => 'error', 'message' => $e->getMessage()], JSON_UNESCAPED_UNICODE));
         }
@@ -71,6 +77,10 @@ class Server
     protected function createContentFromRequest(): array
     {
         $originalContent = $this->getRequest()->getParsedBody();
+
+        if (is_array($originalContent)) {
+            return [];
+        }
 
         // verify signature
         if (!$this->verifySignature($this->getUrl(), $this->formatContentToValidator($originalContent))) {
