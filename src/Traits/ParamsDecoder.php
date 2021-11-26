@@ -18,6 +18,7 @@ trait ParamsDecoder
         'order_tag_list' => 'url|json',
         'backup_recipient_phone' => 'url|json',
         'recipient_address_desensitization' => 'url',
+        'food' => 'json',
 
         // FBI Warning: nested content needs to pay attention to the order!
         'poi_receive_detail_yuan' => 'url|json',
