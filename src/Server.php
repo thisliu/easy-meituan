@@ -78,7 +78,7 @@ class Server
     {
         $originalContent = $this->getRequest()->getParsedBody();
 
-        if (is_array($originalContent)) {
+        if (empty($originalContent)) {
             return [];
         }
 
