@@ -38,6 +38,10 @@ class Store extends Client
                 Rule::requiredIf(!$onlyId = (\data_get($params, 'only_id', false))),
             ],
         ]);
+        
+        if (!$onlyId) {
+            $params['app_poi_codes'] = join(',', $params['app_poi_codes']);
+        }
 
         return $this->get($onlyId ? 'poi/getids' : 'poi/mget', $params);
     }
