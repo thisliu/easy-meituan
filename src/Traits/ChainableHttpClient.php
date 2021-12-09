@@ -3,7 +3,6 @@
 namespace EasyMeiTuan\Traits;
 
 use EasyMeiTuan\Exceptions\InvalidArgumentException;
-use Illuminate\Support\Str;
 
 trait ChainableHttpClient
 {
@@ -16,7 +15,6 @@ trait ChainableHttpClient
         if (\str_starts_with($uri, 'http://') || \str_starts_with($uri, 'https://')) {
             $clone->uri = $uri;
         } else {
-            $uri = \preg_match('~\$[a-z0-9_]+~i', $uri) ? $uri : Str::kebab($uri);
             $clone->uri = \trim(\sprintf('/%s/%s', \trim($this->uri, '/'), \trim($uri, '/')), '/');
         }
 
@@ -60,6 +58,8 @@ trait ChainableHttpClient
             $uri = $this->getUri();
         }
 
+        \var_dump($uri);
+        exit();
         $method = \strtoupper($method);
 
         [$uri, $options] = $this->replaceUriVariables($uri, $options);
