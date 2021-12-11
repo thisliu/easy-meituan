@@ -58,8 +58,6 @@ trait ChainableHttpClient
             $uri = $this->getUri();
         }
 
-        \var_dump($uri);
-        exit();
         $method = \strtoupper($method);
 
         [$uri, $options] = $this->replaceUriVariables($uri, $options);
