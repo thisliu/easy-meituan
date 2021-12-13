@@ -1,7 +1,9 @@
 <h1 align="center"> finecho/meituan </h1>
 
-<p align="center"> 美团开放平台（外卖）SDK</p>
-官方文档：https://developer.waimai.meituan.com/home/doc/food/1
+<p align="center"> 美团开放平台SDK</p>
+
+## 温馨提示
+⚠️  目前仅支持美团外卖服务
 
 ## 安装
 
