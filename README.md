@@ -12,7 +12,7 @@
 - PHP >= 8.0
 
 ```shell
-$ composer require finecho/meituan:dev-main -vvv
+$ composer require finecho/meituan -vvv
 ```
 
 ## 配置
