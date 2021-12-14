@@ -108,7 +108,7 @@ $server = $app->getServer();
 
 // url：在美团外卖设置的回调地址
 // content：美团外卖推送过来的内容, 在美团外卖开放平台配置回调地址美团服务器发起验证码时 content 为空数组
-$server->withURL($url)->with(
+$server->withUrl($url)->with(
     function ($content) {
         // ...
     }
