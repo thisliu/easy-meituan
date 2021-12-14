@@ -1,6 +1,6 @@
 <h1 align="center"> finecho/meituan </h1>
 
-<p align="center"> 美团开放平台SDK</p>
+<p align="center"> 美团开放平台 SDK</p>
 
 ## 温馨提示
 ⚠️  目前仅支持美团外卖服务
@@ -12,7 +12,7 @@
 - PHP >= 8.0
 
 ```shell
-$ composer require finecho/meituan -vvv
+composer require finecho/meituan -vvv
 ```
 
 ## 配置
@@ -41,14 +41,18 @@ $app = new Application($config);
 
 $response = $app->store->create(
     [
-        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
+        'name'    => 'finecho 的快餐店',
+        'address' => '深圳市南山区',
     ]
 );
 
 // 也可以这样
 $response = $app->store->create(
     [
-        'body' => ['name' => 'finecho 的快餐店', 'address' => '深圳市南山区'],
+        'body' => [
+            'name'    => 'finecho 的快餐店',
+            'address' => '深圳市南山区',
+        ],
         'headers' => [],
     ]
 );
@@ -66,7 +70,8 @@ $api = $app->getClient();
 $response = $api->post(
     '/poi/save',
     [
-        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
+        'name'    => 'finecho 的快餐店',
+        'address' => '深圳市南山区',
     ]
 );
 ```
@@ -84,7 +89,8 @@ $api = $app->getClient();
 
 $response = $api->poi->save->post(
     [
-        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
+        'name'    => 'finecho 的快餐店',
+        'address' => '深圳市南山区',
     ]
 );
 ```
@@ -142,9 +148,9 @@ API 接口众多，每一个 API 都会注释上美团文档地址，查询困�
 
 ### :globe_with_meridians: 门店
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/1
+[美团门店文档](https://developer.waimai.meituan.com/home/doc/food/1)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Store.php
+具体方法：[src/Services/Store.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Store.php)
 
 ```php
 $app->store->$method();
@@ -152,9 +158,9 @@ $app->store->$method();
 
 ### :truck: 配送范围
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/2
+[美团配送文档](https://developer.waimai.meituan.com/home/doc/food/2)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/DeliveryRange.php
+具体方法：[src/Services/DeliveryRange.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/DeliveryRange.php)
 
 ```php
 $app->deliveryRange->$method();
@@ -162,9 +168,9 @@ $app->deliveryRange->$method();
 
 ### :memo: 类目
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/3
+[美团类目文档](https://developer.waimai.meituan.com/home/doc/food/3)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Category.php
+具体方法：[src/Services/Category.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Category.php)
 
 ```php
 $app->category->$method();
@@ -172,9 +178,9 @@ $app->category->$method();
 
 ### :beers: 菜品
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/3
+[美团菜品文档](https://developer.waimai.meituan.com/home/doc/food/3)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
+具体方法：[src/Services/Product.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php)
 
 ```php
 $app->product->$method();
@@ -182,9 +188,9 @@ $app->product->$method();
 
 ### :page_facing_up: 订单
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/6
+[美团订单文档](https://developer.waimai.meituan.com/home/doc/food/6)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Order.php
+具体方法：[src/Services/Order.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Order.php)
 
 ```php
 $app->order->$method();
@@ -192,7 +198,7 @@ $app->order->$method();
 
 #### :wastebasket: 订单退款
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Refund.php
+具体方法：[src/Services/Refund.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Refund.php)
 
 ```php
 $app->refund->$method();
@@ -200,7 +206,7 @@ $app->refund->$method();
 
 #### :truck: 订单配送
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Logistic.php
+具体方法：[src/Services/Logistic.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Logistic.php)
 
 ```php
 $app->logistic->$method();
@@ -208,7 +214,7 @@ $app->logistic->$method();
 
 #### :package: 众包
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/CrowdSourcing.php
+具体方法：[src/Services/CrowdSourcing.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/CrowdSourcing.php)
 
 ```php
 $app->crowdSourcing->$method();
@@ -216,7 +222,7 @@ $app->crowdSourcing->$method();
 
 ### :wrench: 全局公共
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
+具体方法：[src/Services/Product.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php)
 
 ```php
 $app->common->$method();
@@ -251,7 +257,7 @@ $httpLogs = $response->getInfo('debug');
 // 请求是否正常
 $isSuccess = $response->isSuccess(): bool;
 // 请求是否出现异常
-$isError = $response->isError(): bool;
+$hasError = $response->hasError(): bool;
 // 获取错误内容（code + msg）
 $error = $response->getError(): array;
 // 获取错误信息
@@ -282,7 +288,7 @@ $app = new Application($config);
 try {
     $response = $app->store->list();
 
-    if ($response->isError()) {
+    if ($response->hasError()) {
         $error = $response->getError();
 
         // .....
