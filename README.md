@@ -1,6 +1,6 @@
 <h1 align="center"> finecho/meituan </h1>
 
-<p align="center"> 美团开放平台SDK</p>
+<p align="center"> 美团开放平台 SDK</p>
 
 ## 温馨提示
 ⚠️  目前仅支持美团外卖服务
@@ -12,7 +12,7 @@
 - PHP >= 8.0
 
 ```shell
-$ composer require finecho/meituan -vvv
+composer require finecho/meituan -vvv
 ```
 
 ## 配置
@@ -41,14 +41,18 @@ $app = new Application($config);
 
 $response = $app->store->create(
     [
-        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
+        'name'    => 'finecho 的快餐店',
+        'address' => '深圳市南山区',
     ]
 );
 
 // 也可以这样
 $response = $app->store->create(
     [
-        'body' => ['name' => 'finecho 的快餐店', 'address' => '深圳市南山区'],
+        'body' => [
+            'name'    => 'finecho 的快餐店',
+            'address' => '深圳市南山区',
+        ],
         'headers' => [],
     ]
 );
@@ -66,7 +70,8 @@ $api = $app->getClient();
 $response = $api->post(
     '/poi/save',
     [
-        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
+        'name'    => 'finecho 的快餐店',
+        'address' => '深圳市南山区',
     ]
 );
 ```
@@ -84,7 +89,8 @@ $api = $app->getClient();
 
 $response = $api->poi->save->post(
     [
-        'name' => 'finecho 的快餐店', 'address' => '深圳市南山区'
+        'name'    => 'finecho 的快餐店',
+        'address' => '深圳市南山区',
     ]
 );
 ```
@@ -102,7 +108,7 @@ $server = $app->getServer();
 
 // url：在美团外卖设置的回调地址
 // content：美团外卖推送过来的内容, 在美团外卖开放平台配置回调地址美团服务器发起验证码时 content 为空数组
-$server->withUrl($url)->with(
+$server->withURL($url)->with(
     function ($content) {
         // ...
     }
@@ -251,7 +257,7 @@ $httpLogs = $response->getInfo('debug');
 // 请求是否正常
 $isSuccess = $response->isSuccess(): bool;
 // 请求是否出现异常
-$isError = $response->isError(): bool;
+$hasError = $response->hasError(): bool;
 // 获取错误内容（code + msg）
 $error = $response->getError(): array;
 // 获取错误信息
@@ -282,7 +288,7 @@ $app = new Application($config);
 try {
     $response = $app->store->list();
 
-    if ($response->isError()) {
+    if ($response->hasError()) {
         $error = $response->getError();
 
         // .....

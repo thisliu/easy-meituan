@@ -30,7 +30,7 @@ class Server
         }
     }
 
-    public function withUrl(string $url): static
+    public function withURL(string $url): static
     {
         $this->url = $url;
 
@@ -40,7 +40,7 @@ class Server
     /**
      * @throws \EasyMeiTuan\Exceptions\InvalidArgumentException
      */
-    public function getUrl(): string
+    public function getURL(): string
     {
         if ($this->url) {
             return $this->url;
@@ -81,7 +81,7 @@ class Server
         }
 
         // verify signature
-        if (!$this->verifySignature($this->getUrl(), $this->formatContentToValidator($originalContent))) {
+        if (!$this->verifySignature($this->getURL(), $this->formatContentToValidator($originalContent))) {
             throw new InvalidParamsException('signature verification failed');
         }
 

@@ -60,12 +60,12 @@ trait ParamsDecoder
         return $content;
     }
 
-    protected static function decodeUrl(string $value): string
+    protected static function decodeURL(string $value): string
     {
         return urldecode($value);
     }
 
-    protected static function decodeJson(string $value): array
+    protected static function decodeJSON(string $value): array
     {
         return json_decode($value, true);
     }

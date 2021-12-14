@@ -63,7 +63,7 @@ class Response implements ResponseInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      */
-    public function isError(): bool
+    public function hasError(): bool
     {
         return !$this->isSuccess();
     }
