@@ -148,9 +148,9 @@ API 接口众多，每一个 API 都会注释上美团文档地址，查询困�
 
 ### :globe_with_meridians: 门店
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/1
+[美团门店文档](https://developer.waimai.meituan.com/home/doc/food/1)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Store.php
+具体方法：[src/Services/Store.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Store.php)
 
 ```php
 $app->store->$method();
@@ -158,9 +158,9 @@ $app->store->$method();
 
 ### :truck: 配送范围
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/2
+[美团配送文档](https://developer.waimai.meituan.com/home/doc/food/2)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/DeliveryRange.php
+具体方法：[src/Services/DeliveryRange.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/DeliveryRange.php)
 
 ```php
 $app->deliveryRange->$method();
@@ -168,9 +168,9 @@ $app->deliveryRange->$method();
 
 ### :memo: 类目
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/3
+[美团类目文档](https://developer.waimai.meituan.com/home/doc/food/3)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Category.php
+具体方法：[src/Services/Category.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Category.php)
 
 ```php
 $app->category->$method();
@@ -178,9 +178,9 @@ $app->category->$method();
 
 ### :beers: 菜品
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/3
+[美团菜品文档](https://developer.waimai.meituan.com/home/doc/food/3)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
+具体方法：[src/Services/Product.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php)
 
 ```php
 $app->product->$method();
@@ -188,9 +188,9 @@ $app->product->$method();
 
 ### :page_facing_up: 订单
 
-文档地址：https://developer.waimai.meituan.com/home/doc/food/6
+[美团订单文档](https://developer.waimai.meituan.com/home/doc/food/6)
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Order.php
+具体方法：[src/Services/Order.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Order.php)
 
 ```php
 $app->order->$method();
@@ -198,7 +198,7 @@ $app->order->$method();
 
 #### :wastebasket: 订单退款
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Refund.php
+具体方法：[src/Services/Refund.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Refund.php)
 
 ```php
 $app->refund->$method();
@@ -206,7 +206,7 @@ $app->refund->$method();
 
 #### :truck: 订单配送
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Logistic.php
+具体方法：[src/Services/Logistic.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Logistic.php)
 
 ```php
 $app->logistic->$method();
@@ -214,7 +214,7 @@ $app->logistic->$method();
 
 #### :package: 众包
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/CrowdSourcing.php
+具体方法：[src/Services/CrowdSourcing.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/CrowdSourcing.php)
 
 ```php
 $app->crowdSourcing->$method();
@@ -222,7 +222,7 @@ $app->crowdSourcing->$method();
 
 ### :wrench: 全局公共
 
-具体方法：https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php
+具体方法：[src/Services/Product.php](https://github.com/finecho/easy-meituan/blob/main/src/Services/Product.php)
 
 ```php
 $app->common->$method();
