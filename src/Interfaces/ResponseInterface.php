@@ -7,7 +7,7 @@ namespace EasyMeiTuan\Interfaces;
 interface ResponseInterface extends \Symfony\Contracts\HttpClient\ResponseInterface
 {
     public function isSuccess(): bool;
-    public function isError(): bool;
+    public function hasError(): bool;
     public function getError(): ?array;
     public function getErrorMsg(): ?string;
     public function getErrorCode(): string|int|null;
