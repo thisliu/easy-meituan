@@ -12,6 +12,7 @@ trait ParamsDecoder
         'detail' => 'url|json',
         'extras' => 'url|json',
         'recipient_name' => 'url',
+        'wm_poi_name' => 'url',
         'wm_poi_address' => 'url',
         'recipient_address' => 'url',
         'incmp_modules' => 'url|json',
