@@ -20,7 +20,8 @@ trait ParamsDecoder
         'backup_recipient_phone' => 'url|json',
         'recipient_address_desensitization' => 'url',
         'food' => 'json',
-
+        'invoice_title' => 'url',
+        
         // FBI Warning: nested content needs to pay attention to the order!
         'poi_receive_detail_yuan' => 'url|json',
         'poi_receive_detail_yuan.reconciliationExtras' => 'json',
