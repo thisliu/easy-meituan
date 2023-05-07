@@ -187,7 +187,7 @@ class Store extends Client
      */
     public function isDelayPush(string $appPoiCode): ResponseInterface
     {
-        return $this->post('logistics/isDelayPush');
+        return $this->post('logistics/isDelayPush', ['app_poi_code' => $appPoiCode]);
     }
 
     /**
